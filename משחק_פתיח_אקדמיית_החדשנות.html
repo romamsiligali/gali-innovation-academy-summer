@@ -1,0 +1,778 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>הקוד הסודי של אקדמיית החדשנות של גלי</title>
+  <style>
+    :root {
+      --blue: #1937a2;
+      --cyan: #1fb6ff;
+      --yellow: #ffd447;
+      --pink: #ff5a9e;
+      --green: #18b77b;
+      --ink: #111827;
+      --muted: #5b6475;
+      --paper: #ffffff;
+      --soft: #f4f7ff;
+      --line: #d9e1f2;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: Arial, "Noto Sans Hebrew", sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 15% 18%, rgba(255, 212, 71, 0.35), transparent 26rem),
+        radial-gradient(circle at 86% 12%, rgba(31, 182, 255, 0.28), transparent 24rem),
+        linear-gradient(135deg, #f8fbff 0%, #eef3ff 100%);
+    }
+
+    .app {
+      min-height: 100vh;
+      display: grid;
+      grid-template-rows: auto 1fr auto;
+    }
+
+    header {
+      padding: 18px clamp(18px, 4vw, 48px);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      background: rgba(255, 255, 255, 0.78);
+      border-bottom: 1px solid var(--line);
+      backdrop-filter: blur(10px);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 800;
+      color: var(--blue);
+    }
+
+    .badge {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      display: grid;
+      place-items: center;
+      color: #fff;
+      background: linear-gradient(135deg, var(--blue), var(--pink));
+      font-size: 24px;
+      font-weight: 900;
+    }
+
+    .progress {
+      min-width: 180px;
+      color: var(--muted);
+      font-weight: 700;
+      text-align: left;
+    }
+
+    main {
+      width: min(1120px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 28px 0 36px;
+      display: grid;
+      align-items: center;
+    }
+
+    .screen {
+      display: none !important;
+      min-height: 620px;
+      padding: clamp(22px, 4vw, 52px);
+      background: rgba(255, 255, 255, 0.92);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      box-shadow: 0 18px 46px rgba(25, 55, 162, 0.12);
+    }
+
+    .screen.active {
+      display: grid !important;
+      gap: 24px;
+      animation: enter 180ms ease-out;
+    }
+
+    @keyframes enter {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .hero {
+      grid-template-columns: 1.05fr 0.95fr;
+      align-items: center;
+    }
+
+    .split {
+      display: grid;
+      grid-template-columns: 1fr 0.95fr;
+      gap: clamp(22px, 5vw, 56px);
+      align-items: center;
+    }
+
+    h1, h2 {
+      margin: 0;
+      line-height: 1.1;
+      letter-spacing: 0;
+    }
+
+    h1 {
+      font-size: clamp(2.4rem, 6vw, 5.25rem);
+      color: var(--blue);
+    }
+
+    h2 {
+      font-size: clamp(2rem, 4.8vw, 4.4rem);
+      color: var(--ink);
+    }
+
+    p, li {
+      font-size: clamp(1.1rem, 2.4vw, 1.55rem);
+      line-height: 1.55;
+    }
+
+    .lead {
+      color: var(--muted);
+      font-weight: 700;
+      max-width: 720px;
+    }
+
+    .image-card {
+      min-height: 310px;
+      border-radius: 18px;
+      border: 1px solid var(--line);
+      background: linear-gradient(135deg, #e8f7ff, #fff3c6);
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .image-card svg {
+      width: 92%;
+      max-height: 330px;
+    }
+
+    .mission-card {
+      background: var(--soft);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 20px;
+    }
+
+    .code-row {
+      display: flex;
+      flex-direction: row-reverse;
+      justify-content: center;
+      gap: 12px;
+      direction: ltr;
+      margin: 10px 0;
+    }
+
+    .code-cell {
+      width: clamp(48px, 8vw, 78px);
+      height: clamp(54px, 8vw, 84px);
+      border-radius: 14px;
+      border: 2px solid var(--blue);
+      background: #fff;
+      display: grid;
+      place-items: center;
+      color: var(--blue);
+      font-size: clamp(1.8rem, 4vw, 3rem);
+      font-weight: 900;
+    }
+
+    .answers {
+      display: grid;
+      gap: 14px;
+    }
+
+    button {
+      border: 0;
+      font: inherit;
+      cursor: pointer;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .answer {
+      width: 100%;
+      padding: 18px 20px;
+      text-align: right;
+      color: var(--ink);
+      background: #fff;
+      border: 2px solid var(--line);
+      border-radius: 12px;
+      font-size: clamp(1.05rem, 2.2vw, 1.35rem);
+      line-height: 1.4;
+      transition: transform 120ms ease, border-color 120ms ease, background 120ms ease;
+    }
+
+    .answer:hover {
+      transform: translateY(-1px);
+      border-color: var(--blue);
+      background: #f9fbff;
+    }
+
+    .answer.correct {
+      border-color: var(--green);
+      background: #eafaf4;
+    }
+
+    .answer.wrong {
+      border-color: #ef476f;
+      background: #fff0f4;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: flex-start;
+      align-items: center;
+    }
+
+    .primary, .secondary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 48px;
+      border-radius: 999px;
+      padding: 12px 22px;
+      font-weight: 900;
+      font-size: 1.1rem;
+    }
+
+    .primary {
+      color: #fff;
+      background: var(--blue);
+    }
+
+    .secondary {
+      color: var(--blue);
+      background: #eaf0ff;
+      border: 1px solid var(--line);
+    }
+
+    .primary:disabled {
+      opacity: 0.45;
+      cursor: not-allowed;
+    }
+
+    .feedback {
+      min-height: 70px;
+      padding: 16px 18px;
+      border-radius: 14px;
+      border: 1px solid var(--line);
+      background: #fff;
+      font-size: clamp(1rem, 2vw, 1.25rem);
+      font-weight: 800;
+      line-height: 1.45;
+      display: none;
+    }
+
+    .feedback.show {
+      display: block;
+    }
+
+    .feedback.ok {
+      color: #096b47;
+      background: #eafaf4;
+      border-color: #a7e3cb;
+    }
+
+    .feedback.no {
+      color: #9f1239;
+      background: #fff0f4;
+      border-color: #ffc2d0;
+    }
+
+    .challenge-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .challenge {
+      width: 100%;
+      padding: 16px;
+      border-radius: 12px;
+      background: #fff;
+      border: 1px solid var(--line);
+      color: var(--ink);
+      font-weight: 900;
+      font-size: 1.1rem;
+      text-align: right;
+      transition: transform 120ms ease, border-color 120ms ease, background 120ms ease;
+    }
+
+    .challenge:hover {
+      transform: translateY(-1px);
+      border-color: var(--blue);
+      background: #f9fbff;
+    }
+
+    .challenge.selected {
+      border-color: var(--green);
+      background: #eafaf4;
+      box-shadow: 0 0 0 3px rgba(24, 183, 123, 0.14);
+    }
+
+    .input-wrap {
+      display: grid;
+      gap: 12px;
+      max-width: 620px;
+    }
+
+    input {
+      width: 100%;
+      padding: 18px 20px;
+      border: 2px solid var(--line);
+      border-radius: 14px;
+      font-size: clamp(1.4rem, 3vw, 2rem);
+      text-align: center;
+      font-weight: 900;
+      color: var(--blue);
+      direction: rtl;
+    }
+
+    @media (max-width: 820px) {
+      header {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .hero, .split {
+        grid-template-columns: 1fr;
+      }
+
+      .screen {
+        min-height: auto;
+      }
+
+      .challenge-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="app">
+    <header>
+      <div class="brand">
+        <div class="badge">AI</div>
+        <div>אקדמיית החדשנות של גלי</div>
+      </div>
+      <div class="progress" id="progress">מסך 1 מתוך 10</div>
+    </header>
+
+    <main>
+      <section class="screen active hero" data-screen="0">
+        <div>
+          <h1>הקוד הסודי של אקדמיית החדשנות</h1>
+          <p class="lead">ברוכים הבאים, צוותי החדשנות! שער האקדמיה ננעל. כדי לפתוח אותו תעברו 6 תחנות, תפתרו משימות ותאספו אותיות.</p>
+          <div class="actions">
+            <button class="primary" data-next>מתחילים</button>
+          </div>
+        </div>
+        <div class="image-card" aria-label="איור תלמידים עובדים עם רובוט">
+          <svg viewBox="0 0 720 420" role="img" aria-label="ילדים עובדים בצוות עם רובוט ידידותי">
+            <rect width="720" height="420" rx="30" fill="#eaf4ff"/>
+            <rect x="80" y="92" width="560" height="180" rx="18" fill="#ffffff" stroke="#bcd0ff" stroke-width="5"/>
+            <rect x="118" y="124" width="180" height="106" rx="10" fill="#1937a2"/>
+            <rect x="330" y="120" width="250" height="20" rx="10" fill="#ffd447"/>
+            <rect x="330" y="158" width="205" height="18" rx="9" fill="#1fb6ff"/>
+            <rect x="330" y="195" width="235" height="18" rx="9" fill="#ff5a9e"/>
+            <g transform="translate(300 246)">
+              <circle cx="60" cy="52" r="42" fill="#ffffff" stroke="#1937a2" stroke-width="6"/>
+              <circle cx="45" cy="48" r="7" fill="#1937a2"/>
+              <circle cx="75" cy="48" r="7" fill="#1937a2"/>
+              <path d="M43 68 Q60 82 78 68" fill="none" stroke="#18b77b" stroke-width="6" stroke-linecap="round"/>
+              <rect x="42" y="94" width="38" height="58" rx="14" fill="#1fb6ff"/>
+            </g>
+            <g fill="#ffb77a">
+              <circle cx="130" cy="310" r="30"/>
+              <circle cx="220" cy="310" r="30"/>
+              <circle cx="500" cy="310" r="30"/>
+              <circle cx="590" cy="310" r="30"/>
+            </g>
+            <g fill="#1937a2">
+              <rect x="96" y="338" width="68" height="42" rx="16"/>
+              <rect x="186" y="338" width="68" height="42" rx="16"/>
+              <rect x="466" y="338" width="68" height="42" rx="16"/>
+              <rect x="556" y="338" width="68" height="42" rx="16"/>
+            </g>
+          </svg>
+        </div>
+      </section>
+
+      <section class="screen split" data-screen="1">
+        <div>
+          <h2>איך משחקים?</h2>
+          <div class="mission-card">
+            <ol>
+              <li>קוראים את המשימה בכל תחנה.</li>
+              <li>בוחרים תשובה או מבצעים פעולה.</li>
+              <li>כשמצליחים, מקבלים אות לקוד הסודי.</li>
+              <li>רושמים את האות במחברת או בדף הצוות.</li>
+              <li>בסוף מחברים את כל האותיות למילה אחת.</li>
+            </ol>
+          </div>
+          <p class="lead">הקוד הסופי מורכב מ־6 אותיות.</p>
+          <div class="actions">
+            <button class="primary" data-next>לתחנה הראשונה</button>
+          </div>
+        </div>
+        <div class="image-card">
+          <svg viewBox="0 0 720 420" role="img" aria-label="מפת משימות">
+            <rect width="720" height="420" rx="30" fill="#fff7dc"/>
+            <path d="M110 320 C170 110 280 330 360 160 C430 18 540 260 620 90" fill="none" stroke="#1937a2" stroke-width="12" stroke-linecap="round" stroke-dasharray="18 18"/>
+            <g font-family="Arial" font-weight="900" font-size="42" text-anchor="middle">
+              <circle cx="110" cy="320" r="38" fill="#ff5a9e"/><text x="110" y="335" fill="#fff">1</text>
+              <circle cx="250" cy="260" r="38" fill="#1fb6ff"/><text x="250" y="275" fill="#fff">2</text>
+              <circle cx="360" cy="160" r="38" fill="#18b77b"/><text x="360" y="175" fill="#fff">3</text>
+              <circle cx="510" cy="220" r="38" fill="#ffd447"/><text x="510" y="235" fill="#1937a2">4</text>
+              <circle cx="620" cy="90" r="38" fill="#1937a2"/><text x="620" y="105" fill="#fff">6</text>
+            </g>
+          </svg>
+        </div>
+      </section>
+
+      <section class="screen split question" data-screen="2" data-letter="ח">
+        <div>
+          <h2>תחנה 1: שער ה־AI</h2>
+          <p class="lead">איך כדאי להשתמש בבינה מלאכותית בזמן למידה?</p>
+          <div class="answers">
+            <button class="answer" data-wrong>להעתיק כל תשובה בלי לבדוק.</button>
+            <button class="answer" data-correct>להשתמש בה ככלי עזר, ואז לבדוק, לשאול ולחשוב בעצמנו.</button>
+            <button class="answer" data-wrong>לתת לה לעשות במקומנו את כל העבודה.</button>
+          </div>
+          <div class="feedback" data-feedback></div>
+          <div class="actions">
+            <button class="primary" data-next disabled>ממשיכים</button>
+          </div>
+        </div>
+        <div class="image-card">
+          <svg viewBox="0 0 720 420" role="img" aria-label="רובוט ידידותי">
+            <rect width="720" height="420" rx="30" fill="#fff3c6"/>
+            <circle cx="360" cy="180" r="86" fill="#fff" stroke="#1937a2" stroke-width="8"/>
+            <rect x="280" y="258" width="160" height="96" rx="28" fill="#1fb6ff"/>
+            <circle cx="330" cy="170" r="12" fill="#1937a2"/>
+            <circle cx="390" cy="170" r="12" fill="#1937a2"/>
+            <path d="M325 212 Q360 238 396 212" fill="none" stroke="#18b77b" stroke-width="9" stroke-linecap="round"/>
+            <path d="M220 290 Q120 240 142 160" fill="none" stroke="#ff5a9e" stroke-width="14" stroke-linecap="round"/>
+            <path d="M500 290 Q606 238 580 150" fill="none" stroke="#ff5a9e" stroke-width="14" stroke-linecap="round"/>
+          </svg>
+        </div>
+      </section>
+
+      <section class="screen split question" data-screen="3" data-letter="ד">
+        <div>
+          <h2>תחנה 2: קיר אתגרי החדשנות</h2>
+          <p class="lead">בחרו אתגר אחד שהצוות שלכם היה רוצה לפתור. אחר כך אמרו בקול: למה הוא חשוב לילדים בבית הספר?</p>
+          <div class="challenge-grid">
+            <button class="challenge" data-challenge>קוראים בכיף</button>
+            <button class="challenge" data-challenge>לומדים דרך משחק</button>
+            <button class="challenge" data-challenge>מרגישים שייכים</button>
+            <button class="challenge" data-challenge>בית ספר שכיף להיות בו</button>
+            <button class="challenge" data-challenge>לומדים חכם</button>
+            <button class="challenge" data-challenge>AI למען הלמידה</button>
+            <button class="challenge" data-challenge>בית הספר של העתיד</button>
+          </div>
+          <div class="feedback" data-feedback></div>
+          <div class="actions">
+            <button class="primary" data-next disabled>לתחנה הבאה</button>
+          </div>
+        </div>
+        <div class="image-card">
+          <svg viewBox="0 0 720 420" role="img" aria-label="ילדים בוחרים רעיונות">
+            <rect width="720" height="420" rx="30" fill="#eafaf4"/>
+            <rect x="105" y="62" width="510" height="230" rx="18" fill="#fff" stroke="#18b77b" stroke-width="6"/>
+            <g>
+              <rect x="150" y="105" width="120" height="70" rx="12" fill="#ffd447"/>
+              <rect x="300" y="105" width="120" height="70" rx="12" fill="#ff5a9e"/>
+              <rect x="450" y="105" width="120" height="70" rx="12" fill="#1fb6ff"/>
+              <rect x="225" y="198" width="120" height="70" rx="12" fill="#18b77b"/>
+              <rect x="375" y="198" width="120" height="70" rx="12" fill="#1937a2"/>
+            </g>
+            <circle cx="220" cy="335" r="28" fill="#ffb77a"/>
+            <circle cx="360" cy="335" r="28" fill="#ffb77a"/>
+            <circle cx="500" cy="335" r="28" fill="#ffb77a"/>
+          </svg>
+        </div>
+      </section>
+
+      <section class="screen split question" data-screen="4" data-letter="ש">
+        <div>
+          <h2>תחנה 3: מעבדת החקר</h2>
+          <p class="lead">אילו שאלות עוזרות להבין בעיה באמת? בחרו תשובה אחת טובה במיוחד.</p>
+          <div class="answers">
+            <button class="answer" data-correct>על מי הבעיה משפיעה, מתי היא קורית ומה כבר ניסו לעשות?</button>
+            <button class="answer" data-wrong>איך נסיים הכי מהר בלי לבדוק?</button>
+            <button class="answer" data-wrong>איזה צבע הכי יפה למצגת?</button>
+          </div>
+          <div class="feedback" data-feedback></div>
+          <div class="actions">
+            <button class="primary" data-next disabled>ממשיכים</button>
+          </div>
+        </div>
+        <div class="image-card">
+          <svg viewBox="0 0 720 420" role="img" aria-label="חקר בעיה">
+            <rect width="720" height="420" rx="30" fill="#edf3ff"/>
+            <rect x="92" y="90" width="250" height="210" rx="20" fill="#fff" stroke="#1937a2" stroke-width="5"/>
+            <rect x="132" y="130" width="170" height="18" rx="9" fill="#1fb6ff"/>
+            <rect x="132" y="174" width="130" height="18" rx="9" fill="#ffd447"/>
+            <rect x="132" y="218" width="150" height="18" rx="9" fill="#ff5a9e"/>
+            <circle cx="475" cy="190" r="70" fill="none" stroke="#18b77b" stroke-width="16"/>
+            <line x1="526" y1="242" x2="610" y2="326" stroke="#18b77b" stroke-width="18" stroke-linecap="round"/>
+          </svg>
+        </div>
+      </section>
+
+      <section class="screen split question" data-screen="5" data-letter="נ">
+        <div>
+          <h2>תחנה 4: סדנת הרעיונות</h2>
+          <p class="lead">מה עושים לפני שבוחרים רעיון סופי?</p>
+          <div class="answers">
+            <button class="answer" data-wrong>בוחרים את הרעיון הראשון שעולה לנו.</button>
+            <button class="answer" data-correct>מציעים כמה רעיונות, משווים ביניהם, ואז בוחרים רעיון מוביל.</button>
+            <button class="answer" data-wrong>מחכים שמישהו אחר יחליט.</button>
+          </div>
+          <div class="feedback" data-feedback></div>
+          <div class="actions">
+            <button class="primary" data-next disabled>לתחנה הבאה</button>
+          </div>
+        </div>
+        <div class="image-card">
+          <svg viewBox="0 0 720 420" role="img" aria-label="פתקים עם רעיונות">
+            <rect width="720" height="420" rx="30" fill="#fff7dc"/>
+            <g transform="translate(90 70)">
+              <rect x="0" y="0" width="150" height="105" rx="14" fill="#ffd447"/>
+              <rect x="190" y="0" width="150" height="105" rx="14" fill="#1fb6ff"/>
+              <rect x="380" y="0" width="150" height="105" rx="14" fill="#ff5a9e"/>
+              <rect x="90" y="145" width="150" height="105" rx="14" fill="#18b77b"/>
+              <rect x="285" y="145" width="150" height="105" rx="14" fill="#1937a2"/>
+            </g>
+            <path d="M150 335 C250 280 410 380 565 300" fill="none" stroke="#1937a2" stroke-width="12" stroke-linecap="round"/>
+          </svg>
+        </div>
+      </section>
+
+      <section class="screen split question" data-screen="6" data-letter="ו">
+        <div>
+          <h2>תחנה 5: חדר Genially</h2>
+          <p class="lead">מה אפשר ליצור ב־Genially?</p>
+          <div class="answers">
+            <button class="answer" data-correct>חידון, משחק קצר, חדר בריחה או מצגת עם כפתורים.</button>
+            <button class="answer" data-wrong>רק מחברת נייר רגילה.</button>
+            <button class="answer" data-wrong>רק תמונה אחת בלי שום לחיצה.</button>
+          </div>
+          <div class="feedback" data-feedback></div>
+          <div class="actions">
+            <button class="primary" data-next disabled>לתחנה האחרונה</button>
+          </div>
+        </div>
+        <div class="image-card">
+          <svg viewBox="0 0 720 420" role="img" aria-label="יצירת משחק דיגיטלי">
+            <rect width="720" height="420" rx="30" fill="#f2edff"/>
+            <rect x="120" y="76" width="480" height="260" rx="22" fill="#fff" stroke="#1937a2" stroke-width="7"/>
+            <rect x="165" y="120" width="390" height="54" rx="14" fill="#1fb6ff"/>
+            <circle cx="220" cy="245" r="38" fill="#ffd447"/>
+            <rect x="305" y="213" width="190" height="64" rx="32" fill="#18b77b"/>
+            <path d="M215 245 L235 260 L260 220" fill="none" stroke="#1937a2" stroke-width="9" stroke-linecap="round"/>
+          </svg>
+        </div>
+      </section>
+
+      <section class="screen split question" data-screen="7" data-letter="ת">
+        <div>
+          <h2>תחנה 6: צוות החדשנות</h2>
+          <p class="lead">מה הכי חשוב כשעובדים בצוות חדשנות?</p>
+          <div class="answers">
+            <button class="answer" data-wrong>שכל אחד יעבוד לבד ולא יקשיב לאחרים.</button>
+            <button class="answer" data-correct>לשתף פעולה, להקשיב, לחלק תפקידים ולעזור זה לזה.</button>
+            <button class="answer" data-wrong>לבחור רק את הרעיון של מי שמדבר הכי חזק.</button>
+          </div>
+          <div class="feedback" data-feedback></div>
+          <div class="actions">
+            <button class="primary" data-next disabled>לפתיחת השער</button>
+          </div>
+        </div>
+        <div class="image-card">
+          <svg viewBox="0 0 720 420" role="img" aria-label="עבודת צוות">
+            <rect width="720" height="420" rx="30" fill="#eaf4ff"/>
+            <ellipse cx="360" cy="292" rx="250" ry="70" fill="#fff" stroke="#bcd0ff" stroke-width="6"/>
+            <g fill="#ffb77a">
+              <circle cx="180" cy="178" r="32"/>
+              <circle cx="300" cy="145" r="32"/>
+              <circle cx="430" cy="145" r="32"/>
+              <circle cx="550" cy="178" r="32"/>
+            </g>
+            <g fill="#1937a2">
+              <rect x="145" y="214" width="70" height="88" rx="18"/>
+              <rect x="265" y="181" width="70" height="100" rx="18"/>
+              <rect x="395" y="181" width="70" height="100" rx="18"/>
+              <rect x="515" y="214" width="70" height="88" rx="18"/>
+            </g>
+            <rect x="298" y="258" width="130" height="82" rx="12" fill="#ffd447"/>
+          </svg>
+        </div>
+      </section>
+
+      <section class="screen split" data-screen="8">
+        <div>
+          <h2>פותחים את שער האקדמיה</h2>
+          <p class="lead">אספתם רמזים לאורך המשימות. האות הראשונה כבר מופיעה כאן:</p>
+          <div class="code-row" aria-label="קוד חסר">
+            <div class="code-cell">ח</div>
+            <div class="code-cell">_</div>
+            <div class="code-cell">_</div>
+            <div class="code-cell">_</div>
+            <div class="code-cell">_</div>
+            <div class="code-cell">_</div>
+          </div>
+          <p>השלימו את שאר האותיות לפי הרמזים שאספתם אחרי כל תשובה נכונה. כתבו את האותיות לפי סדר התחנות.</p>
+          <div class="input-wrap">
+            <label for="secret"><strong>מה הקוד הסודי שפותח את שער האקדמיה?</strong></label>
+            <input id="secret" autocomplete="off" placeholder="הקלידו כאן את הקוד">
+          </div>
+          <div class="feedback" id="finalFeedback"></div>
+          <div class="actions">
+            <button class="primary" id="checkCode">בדיקה</button>
+          </div>
+        </div>
+        <div class="image-card">
+          <svg viewBox="0 0 720 420" role="img" aria-label="שער נעול">
+            <rect width="720" height="420" rx="30" fill="#fff7dc"/>
+            <rect x="170" y="110" width="380" height="240" rx="24" fill="#1937a2"/>
+            <path d="M260 110 V82 C260 24 460 24 460 82 V110" fill="none" stroke="#1937a2" stroke-width="34" stroke-linecap="round"/>
+            <circle cx="360" cy="218" r="42" fill="#ffd447"/>
+            <rect x="345" y="250" width="30" height="58" rx="12" fill="#ffd447"/>
+            <text x="360" y="384" text-anchor="middle" font-size="38" font-family="Arial" font-weight="900" fill="#1937a2">הקלידו את הקוד</text>
+          </svg>
+        </div>
+      </section>
+
+      <section class="screen hero" data-screen="9">
+        <div>
+          <h1>השער נפתח!</h1>
+          <p class="lead">הקוד הסודי הוא: <strong>חדשנות</strong></p>
+          <p>ברוכים הבאים לאקדמיית החדשנות של גלי! עכשיו מתחילים ליצור רעיונות, לחקור בעיות ולבנות תוצרים דיגיטליים משלכם.</p>
+          <div class="actions">
+            <a class="primary" href="index.html">לדף הקייטנה</a>
+          </div>
+        </div>
+        <div class="image-card">
+          <svg viewBox="0 0 720 420" role="img" aria-label="חגיגת הצלחה">
+            <rect width="720" height="420" rx="30" fill="#eafaf4"/>
+            <g fill="#ffd447">
+              <circle cx="110" cy="80" r="18"/>
+              <circle cx="610" cy="88" r="18"/>
+              <circle cx="530" cy="300" r="15"/>
+              <circle cx="205" cy="320" r="15"/>
+            </g>
+            <path d="M120 210 Q220 90 330 210 T580 210" fill="none" stroke="#ff5a9e" stroke-width="14" stroke-linecap="round"/>
+            <circle cx="360" cy="178" r="72" fill="#fff" stroke="#1937a2" stroke-width="7"/>
+            <circle cx="335" cy="168" r="9" fill="#1937a2"/>
+            <circle cx="385" cy="168" r="9" fill="#1937a2"/>
+            <path d="M326 202 Q360 232 398 202" fill="none" stroke="#18b77b" stroke-width="8" stroke-linecap="round"/>
+            <text x="360" y="350" text-anchor="middle" font-size="46" font-family="Arial" font-weight="900" fill="#1937a2">כל הכבוד!</text>
+          </svg>
+        </div>
+      </section>
+    </main>
+
+  </div>
+
+  <script>
+    const screens = Array.from(document.querySelectorAll('.screen'));
+    const progress = document.querySelector('#progress');
+    const collected = [];
+
+    function show(index) {
+      const safeIndex = Math.max(0, Math.min(index, screens.length - 1));
+      screens.forEach((screen, i) => screen.classList.toggle('active', i === safeIndex));
+      progress.textContent = `מסך ${safeIndex + 1} מתוך ${screens.length}`;
+      document.querySelector('main').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    function markAnswered(section, ok) {
+      const feedback = section.querySelector('[data-feedback]');
+      const next = section.querySelector('[data-next]');
+      const letter = section.dataset.letter;
+
+      if (ok) {
+        if (!collected.includes(letter)) collected.push(letter);
+        feedback.textContent = `כל הכבוד! הרמז שלכם: האות ${letter}. רשמו אותה בדף הצוות.`;
+        feedback.className = 'feedback show ok';
+        next.disabled = false;
+      } else {
+        feedback.textContent = 'נסו שוב. קראו את השאלה בעיון ובחרו תשובה אחרת.';
+        feedback.className = 'feedback show no';
+      }
+    }
+
+    document.querySelectorAll('[data-next]').forEach(button => {
+      button.addEventListener('click', () => {
+        const active = button.closest('.screen');
+        const activeIndex = screens.indexOf(active);
+        show(activeIndex + 1);
+      });
+    });
+
+    document.querySelectorAll('.question').forEach(section => {
+      section.querySelectorAll('[data-challenge]').forEach(button => {
+        button.addEventListener('click', () => {
+          section.querySelectorAll('.challenge').forEach(challenge => challenge.classList.remove('selected'));
+          button.classList.add('selected');
+          markAnswered(section, true);
+        });
+      });
+
+      section.querySelectorAll('[data-correct]').forEach(button => {
+        button.addEventListener('click', () => {
+          section.querySelectorAll('.answer').forEach(answer => answer.classList.remove('correct', 'wrong'));
+          button.classList.add('correct');
+          markAnswered(section, true);
+        });
+      });
+
+      section.querySelectorAll('[data-wrong]').forEach(button => {
+        button.addEventListener('click', () => {
+          section.querySelectorAll('.answer').forEach(answer => answer.classList.remove('correct', 'wrong'));
+          button.classList.add('wrong');
+          markAnswered(section, false);
+        });
+      });
+    });
+
+    document.querySelector('#checkCode').addEventListener('click', () => {
+      const value = document.querySelector('#secret').value.replace(/\s/g, '').trim();
+      const feedback = document.querySelector('#finalFeedback');
+      if (value === 'חדשנות') {
+        feedback.textContent = 'כל הכבוד! פיצחתם את הקוד הסודי. שער אקדמיית החדשנות של גלי נפתח!';
+        feedback.className = 'feedback show ok';
+        setTimeout(() => show(9), 900);
+      } else {
+        feedback.textContent = 'נסו שוב. בדקו את האותיות שאספתם בכל תחנה וכתבו אותן לפי הסדר.';
+        feedback.className = 'feedback show no';
+      }
+    });
+
+    document.querySelector('#secret').addEventListener('keydown', event => {
+      if (event.key === 'Enter') document.querySelector('#checkCode').click();
+    });
+  </script>
+</body>
+</html>
