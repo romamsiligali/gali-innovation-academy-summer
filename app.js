@@ -104,9 +104,6 @@ function renderMagicRooms() {
 function renderCampDays() {
   daysContainer.innerHTML = campDays
     .map((day) => {
-      const taskText = day.taskLink ? "פתיחת המשימה" : "קישור יתווסף בהמשך";
-      const taskHref = day.taskLink || "#days-title";
-      const statusText = day.status || "יעודכן במהלך הקייטנה.";
       return `
         <article class="day-card">
           <span class="day-number">יום ${day.day}</span>
@@ -115,14 +112,6 @@ function renderCampDays() {
             <div>
               <dt>מה עושים היום?</dt>
               <dd>${day.today}</dd>
-            </div>
-            <div>
-              <dt>קישור למשימה</dt>
-              <dd><a href="${taskHref}">${taskText}</a></dd>
-            </div>
-            <div>
-              <dt>סטטוס אישי</dt>
-              <dd>${statusText}</dd>
             </div>
           </dl>
         </article>
