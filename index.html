@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>אקדמיית החדשנות של גלי</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="header-content">
+        <div class="brand-mark" aria-hidden="true">AI</div>
+        <div>
+          <h1>אקדמיית החדשנות של גלי</h1>
+          <p>מרכז העבודה הדיגיטלי של הקייטנה</p>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section class="intro-section" aria-labelledby="intro-title">
+        <div class="intro-copy">
+          <p class="eyebrow">ברוכים הבאים</p>
+          <h2 id="intro-title">כאן מתחיל מסע החדשנות שלנו</h2>
+          <p>
+            כאן תמצאו את כל הקישורים, חדרי הלמידה, המשימות והכלים שילוו אותנו לאורך הקייטנה.
+          </p>
+        </div>
+      </section>
+
+      <section class="opening-game" aria-labelledby="opening-game-title">
+        <div>
+          <p class="eyebrow">משחק פתיחה</p>
+          <h2 id="opening-game-title">פותחים את שער האקדמיה</h2>
+        </div>
+        <a class="button button-primary" href="משחק_פתיח_אקדמיית_החדשנות.html">כניסה למשחק הפתיחה</a>
+      </section>
+
+      <section class="content-section" aria-labelledby="rooms-title">
+        <div class="section-heading">
+          <h2 id="rooms-title">חדרי MagicSchool</h2>
+        </div>
+        <div class="card-grid rooms-grid" id="magicRooms"></div>
+      </section>
+
+      <section class="content-section" aria-labelledby="days-title">
+        <div class="section-heading">
+          <h2 id="days-title">מסלול 10 הימים שלנו</h2>
+        </div>
+        <div class="card-grid days-grid" id="campDays"></div>
+      </section>
+
+      <section class="content-section attendance-section" aria-labelledby="attendance-title">
+        <div class="section-heading">
+          <h2 id="attendance-title">סימון נוכחות יומי</h2>
+          <p>סמנו שהגעתם היום לקייטנה.</p>
+        </div>
+        <div class="attendance-actions" role="group" aria-label="סימון נוכחות">
+          <button class="button button-primary" type="button" data-attendance="arrived">הגעתי היום</button>
+          <button class="button button-light" type="button" data-attendance="absent">לא מגיע היום</button>
+        </div>
+        <p class="attendance-message" id="attendanceMessage" aria-live="polite"></p>
+      </section>
+
+      <section class="content-section" aria-labelledby="rules-title">
+        <div class="section-heading">
+          <h2 id="rules-title">כללי עבודה באקדמיה</h2>
+        </div>
+        <ol class="rules-list">
+          <li>מגיעים בזמן ומתחילים יחד.</li>
+          <li>כל תלמיד מגיע עם חשבון Gmail אישי וסיסמה כדי שיוכל לעבוד בכלים הדיגיטליים.</li>
+          <li>שומרים על פרטיות ולא משתפים מידע אישי.</li>
+          <li>משתמשים בכלי AI ככלי עזר לחשיבה, לא במקום חשיבה.</li>
+          <li>בודקים מידע ולא מסתמכים על תשובה אחת בלבד.</li>
+          <li>עובדים בצוות, מקשיבים, משתפים ומכבדים.</li>
+        </ol>
+      </section>
+
+      <section class="content-section" aria-labelledby="links-title">
+        <div class="section-heading">
+          <h2 id="links-title">קישורים חשובים</h2>
+        </div>
+        <div class="important-links">
+          <a class="button button-link" href="GOOGLE_DRIVE_LINK">Google Drive</a>
+          <a class="button button-link" href="CONTACT_FORM_LINK">טופס פרטי קשר</a>
+          <a class="button button-link" href="משחק_פתיח_אקדמיית_החדשנות.html">משחק פתיחה</a>
+          <a class="button button-link" href="FIRST_DAY_PRESENTATION_LINK">מצגת יום ראשון</a>
+          <a class="button button-link" href="MAGICSCHOOL_ROOMS_LINK">חדרי MagicSchool</a>
+        </div>
+      </section>
+
+      <section class="content-section" aria-labelledby="updates-title">
+        <div class="section-heading">
+          <h2 id="updates-title">הודעות ועדכונים</h2>
+        </div>
+        <article class="message-card">
+          <p>
+            ברוכים הבאים לאקדמיית החדשנות של גלי. בכל יום נתקדם צעד נוסף במסע שלנו, נחקור, ניצור ונעבוד יחד על פרויקט מסכם.
+          </p>
+        </article>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p>נבנה עבור אקדמיית החדשנות של גלי</p>
+    </footer>
+
+    <script src="app.js"></script>
+  </body>
+</html>
