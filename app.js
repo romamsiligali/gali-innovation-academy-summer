@@ -1,33 +1,91 @@
 const magicSchoolRooms = [
-  { name: "מנטור הלמידה של גלי", link: "MAGICSCHOOL_ROOM_1_LINK" },
-  { name: "חדר חקר הרעיונות", link: "MAGICSCHOOL_ROOM_2_LINK" },
-  { name: "חדר ניסוח פרומפטים", link: "MAGICSCHOOL_ROOM_3_LINK" },
-  { name: "חדר בדיקת מידע", link: "MAGICSCHOOL_ROOM_4_LINK" },
-  { name: "חדר תכנון פרויקט", link: "MAGICSCHOOL_ROOM_5_LINK" },
-  { name: "חדר יצירת תוכן", link: "MAGICSCHOOL_ROOM_6_LINK" },
-  { name: "חדר עיצוב והצגה", link: "MAGICSCHOOL_ROOM_7_LINK" },
-  { name: "חדר עבודת צוות", link: "MAGICSCHOOL_ROOM_8_LINK" },
-  { name: "חדר משוב ושיפור", link: "MAGICSCHOOL_ROOM_9_LINK" },
-  { name: "חדר הכנה להצגת תוצר", link: "MAGICSCHOOL_ROOM_10_LINK" }
+  { name: "חדר המשחקים והגמיפיקציה 🎮", link: "https://student.magicschool.ai/s/join?joinCode=2oZCog" },
+  { name: "מעבדת ניהול הפרויקט 🚀", link: "https://student.magicschool.ai/s/join?joinCode=SRXRoA" },
+  { name: "מעבדת עבודת הצוות 👥", link: "https://student.magicschool.ai/s/join?joinCode=iEiMvA" },
+  { name: "מעבדת בקרת איכות ✅", link: "https://student.magicschool.ai/s/join?joinCode=f57gUA" },
+  { name: "מעבדת ההצגה והשכנוע 🎤", link: "https://student.magicschool.ai/s/join?joinCode=GH5cWg" },
+  { name: "מעבדת העיצוב ב-Canva", link: "https://student.magicschool.ai/s/join?joinCode=XiSw5g" },
+  { name: "מעבדת ה-AI 🤖", link: "https://student.magicschool.ai/s/join?joinCode=oDHCCg" },
+  { name: "מעבדת הרעיונות 💡", link: "https://student.magicschool.ai/s/join?joinCode=hjYMVg" },
+  { name: "מעבדת החקר - חוקרים ושואלים שאלות 🔍", link: "https://student.magicschool.ai/s/join?joinCode=EWLLCQ" },
+  { name: "מנטור הלמידה של גלי - תבנית בסיס 🧠", link: "https://student.magicschool.ai/s/join?joinCode=mnTzoA" }
 ];
 
 const campDays = [
-  "היכרות עם האקדמיה",
-  "רעיונות ושאלות טובות",
-  "פרומפטים שמובילים לתשובות טובות",
-  "בדיקת מידע ואחריות דיגיטלית",
-  "תכנון הפרויקט המסכם",
-  "יצירת תוכן בעזרת AI",
-  "עיצוב והצגת רעיונות",
-  "עבודת צוות ושיפור תוצרים",
-  "חזרות ומשוב לפני הצגה",
-  "הצגת תוצרים וסיכום המסע"
+  {
+    day: 1,
+    title: "פתיחה, היכרות עם AI, התחברות וחלוקה לצוותים",
+    today: "פתיחה, משחק Genially, היכרות עם חדרי MagicSchool, חלוקה לצוותים.",
+    taskLink: "",
+    status: ""
+  },
+  {
+    day: 2,
+    title: "בחירת אתגר, עבודת צוות ושאלת חקר",
+    today: "גיבוש צוותים, בחירת אתגר חדשנות, ניסוח שאלת חקר.",
+    taskLink: "",
+    status: ""
+  },
+  {
+    day: 3,
+    title: "חקר, איסוף מידע והבנת הבעיה",
+    today: "הבנת הבעיה, איסוף מידע, בניית מפת ידע.",
+    taskLink: "",
+    status: ""
+  },
+  {
+    day: 4,
+    title: "פיתוח רעיונות ובחירת פתרון",
+    today: "סיעור מוחות, השוואה בין רעיונות, תכנון פרויקט.",
+    taskLink: "",
+    status: ""
+  },
+  {
+    day: 5,
+    title: "התחלת בנייה ב-Canva",
+    today: "הדגמת Canva, התחלת בניית תוצר, בקרת איכות ראשונה.",
+    taskLink: "",
+    status: ""
+  },
+  {
+    day: 6,
+    title: "המשך בנייה ב-Canva ושיפור התוצר",
+    today: "המשך בנייה ב-Canva, שיפור העיצוב, בחירת רכיב אינטראקטיבי לתוצר.",
+    taskLink: "",
+    status: ""
+  },
+  {
+    day: 7,
+    title: "בניית רכיב Genially ושילוב עם התוצר",
+    today: "בניית פעילות ב-Genially, שילוב בתוצר, בקרת איכות.",
+    taskLink: "",
+    status: ""
+  },
+  {
+    day: 8,
+    title: "שיפור תוצרים, משוב ובקרת איכות",
+    today: "משוב עמיתים, שיפור התוצרים, תכנון הצגה.",
+    taskLink: "",
+    status: ""
+  },
+  {
+    day: 9,
+    title: "הכנה להצגה וחזרות",
+    today: "סיום תוצרים, כתיבת תסריט, חלוקת תפקידים וחזרות.",
+    taskLink: "",
+    status: ""
+  },
+  {
+    day: 10,
+    title: "תערוכת חדשנות, הצגת תוצרים וסיכום",
+    today: "הצגת פרויקטים, גלריית תוצרים, רפלקציה וחלוקת תעודות.",
+    taskLink: "",
+    status: ""
+  }
 ];
 
 const roomsContainer = document.querySelector("#magicRooms");
 const daysContainer = document.querySelector("#campDays");
-const attendanceMessage = document.querySelector("#attendanceMessage");
-const attendanceButtons = document.querySelectorAll("[data-attendance]");
 
 function renderMagicRooms() {
   roomsContainer.innerHTML = magicSchoolRooms
@@ -45,24 +103,26 @@ function renderMagicRooms() {
 
 function renderCampDays() {
   daysContainer.innerHTML = campDays
-    .map((title, index) => {
-      const dayNumber = index + 1;
+    .map((day) => {
+      const taskText = day.taskLink ? "פתיחת המשימה" : "קישור יתווסף בהמשך";
+      const taskHref = day.taskLink || "#days-title";
+      const statusText = day.status || "יעודכן במהלך הקייטנה.";
       return `
         <article class="day-card">
-          <span class="day-number">יום ${dayNumber}</span>
-          <h3>${title}</h3>
+          <span class="day-number">יום ${day.day}</span>
+          <h3>${day.title}</h3>
           <dl class="day-fields">
             <div>
               <dt>מה עושים היום?</dt>
-              <dd>טקסט זמני לעריכה בהמשך.</dd>
+              <dd>${day.today}</dd>
             </div>
             <div>
               <dt>קישור למשימה</dt>
-              <dd><a href="DAY_${dayNumber}_TASK_LINK">קישור זמני למשימה</a></dd>
+              <dd><a href="${taskHref}">${taskText}</a></dd>
             </div>
             <div>
               <dt>סטטוס אישי</dt>
-              <dd>טקסט זמני לסימון התקדמות.</dd>
+              <dd>${statusText}</dd>
             </div>
           </dl>
         </article>
@@ -71,32 +131,5 @@ function renderCampDays() {
     .join("");
 }
 
-function todayKey() {
-  const today = new Date();
-  const year = today.getFullYear();
-  const month = String(today.getMonth() + 1).padStart(2, "0");
-  const day = String(today.getDate()).padStart(2, "0");
-  return `attendance-${year}-${month}-${day}`;
-}
-
-function saveAttendance(value) {
-  localStorage.setItem(todayKey(), value);
-  attendanceMessage.textContent = "הסימון נשמר במכשיר זה.";
-}
-
-function showSavedAttendance() {
-  const savedAttendance = localStorage.getItem(todayKey());
-  if (savedAttendance) {
-    attendanceMessage.textContent = "הסימון נשמר במכשיר זה.";
-  }
-}
-
-attendanceButtons.forEach((button) => {
-  button.addEventListener("click", () => {
-    saveAttendance(button.dataset.attendance);
-  });
-});
-
 renderMagicRooms();
 renderCampDays();
-showSavedAttendance();
