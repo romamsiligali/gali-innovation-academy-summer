@@ -1,0 +1,20 @@
+{
+  "name": "אקדמיית החדשנות של גלי",
+  "short_name": "אקדמיית החדשנות",
+  "description": "מרכז העבודה הדיגיטלי של הקייטנה.",
+  "start_url": "./index.html?v=20260702a",
+  "scope": "./",
+  "display": "standalone",
+  "dir": "rtl",
+  "lang": "he",
+  "background_color": "#f8fbff",
+  "theme_color": "#12327a",
+  "icons": [
+    {
+      "src": "academy-icon-v2.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
