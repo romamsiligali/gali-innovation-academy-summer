@@ -215,6 +215,19 @@ main {
   color: var(--white);
 }
 
+.button-disabled {
+  background: #dfe7f4;
+  color: var(--muted);
+  cursor: not-allowed;
+}
+
+.locked-note {
+  margin: 10px 0 0;
+  color: var(--muted);
+  font-size: 15px;
+  font-weight: 800;
+}
+
 .button:hover,
 .button:focus-visible {
   filter: brightness(0.96);

@@ -2,7 +2,7 @@
   "name": "אקדמיית החדשנות של גלי",
   "short_name": "אקדמיית החדשנות",
   "description": "מרכז העבודה הדיגיטלי של הקייטנה.",
-  "start_url": "./index.html?v=20260702a",
+  "start_url": "./index.html?v=20260702c",
   "scope": "./",
   "display": "standalone",
   "dir": "rtl",

@@ -1,9 +1,9 @@
-const CACHE_NAME = "gali-innovation-academy-v1";
+const CACHE_NAME = "gali-innovation-academy-v2";
 const OFFLINE_ASSETS = [
   "./",
   "./index.html",
-  "./styles.css?v=20260702a",
-  "./app.js?v=20260701c",
+  "./styles.css?v=20260702c",
+  "./app.js?v=20260702c",
   "./manifest.json",
   "./academy-hero-v2.png",
   "./academy-icon-v2.png",
